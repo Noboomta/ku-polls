@@ -1,11 +1,11 @@
-<h1>{{ question.question_text }}</h1>
+<h1 style="color: blue;">{{ question.question_text }}</h1>
 
 <ul>
 <table>
 {% for choice in question.choice_set.all %}
     <tr>
-            <td>{{choice.choice_text}}</td>
-            <td>{{choice.votes}}</td>
+        <td style="color: blue;">{{choice.choice_text}}</td>
+        <td style="color: red">{{choice.votes}}</td>
     </tr>    
 {% endfor %}
 </table>

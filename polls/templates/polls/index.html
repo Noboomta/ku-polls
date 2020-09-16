@@ -1,10 +1,24 @@
+<style>
+    .city {
+      background-color: red;
+      color: red;
+      border: 2px solid red;
+      margin: 20px;
+      padding: 20px;
+    }
+    li a{
+        color: blue;
+    }
+</style>
+
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link rel="stylesheet" type="text/css" href="polls\static\polls\style.css">
+<!-- {% static 'polls/style.css' %} -->
 
 {% if messages %}
     {% for message in messages %}
-        <p class="{{message.warning}}">{{message}}</p>
+        <p class="{{message.warning}}" style="color:aqua;">{{message}}</p>
     {% endfor %}
 {% endif %}
 
@@ -12,7 +26,7 @@
     <ul>
     {% for question in latest_question_list %}
         <li>
-            <p >{{ question.question_text }}</>
+            <p ><strong>{{ question.question_text }}</strong></>
             {% if question.can_vote %}
             <a href="{% url 'polls:detail' question.id %}">vote</a>
             {% endif %}

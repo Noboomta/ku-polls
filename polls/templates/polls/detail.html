@@ -1,12 +1,16 @@
-<h1>{{ question.question_text }}</h1>
+<!-- <body>
+    <div style="background-image: url(https://www.google.co.th/url?sa=i&url=https%3A%2F%2Fwallpaperaccess.com%2Fanime-cloud&psig=AOvVaw1Ydn2YoxPvaO37jJ2zVmWG&ust=1600358279652000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLjvh6uF7usCFQAAAAAdAAAAABAD);"></div>
+</body> -->
+
+<h1 style="color: blue;"><strong>{{ question.question_text }}</strong></h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'polls:vote' question.id %}" method="post">
 {% csrf_token %}
 {% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    <input style="color: blue;" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label style="color: red;" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
 {% endfor %}
 <input type="submit" value="Vote">
 <!-- <input type="button" value="Go back!" onclick="history.back()"> -->

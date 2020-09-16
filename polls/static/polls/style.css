@@ -1,6 +1,14 @@
 li a {
     color: blue;
+    /* padding: 10; */
+    /* padding-block-end: 10px; */
+    padding-right: 10px;
 }
+
 /* body {
     background: white url("images/background.gif") no-repeat; 
 } */
+.my_style{
+    color: red;
+    padding-right: 10px;
+}
