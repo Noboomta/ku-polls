@@ -1,5 +1,5 @@
 # KU POLLS
-The Web aplication for make a polls to vote and to see a result.
+The Web application for make a polls to vote and to see a result.
 
 # A statement
 [Vision Statement](../../wiki/Vision%20Statement)<br><br/>
