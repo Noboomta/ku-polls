@@ -8,3 +8,5 @@ The Web application for make a polls to vote and to see a result.
 # Iteration plan
 [Iteration 1](https://github.com/Noboomta/ku-polls/wiki/Iteration-1-Plan)<br><br/>
 [Iteration 2](https://github.com/Noboomta/ku-polls/wiki/Iteration-2-Plan)
+
+![Python package](https://github.com/Noboomta/ku-polls/workflows/Python%20package/badge.svg)
