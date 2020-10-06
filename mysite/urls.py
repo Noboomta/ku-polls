@@ -1,4 +1,4 @@
-"""mysite URL Configuration
+"""mysite URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-import polls
+
 from django.contrib import admin
 from django.urls import include, path
 # from polls import "mysite\views_for_mainpage.py"
@@ -22,6 +22,4 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('', include('polls.urls')),
-    # path("", polls.views_for_mainpage.index, name="main_index"),
-    # path("", polls.views.index),
 ]
