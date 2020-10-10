@@ -17,17 +17,17 @@ class Question(models.Model):
         return self.question_text
 
     def was_published_recently(self):
-        """Method to check if the Question is published recently."""
+        """Check if the Question is published recently."""
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
     def is_published(self):
-        """Method to check if the Question is published."""
+        """Check if the Question is published."""
         now = timezone.now()
         return self.pub_date <= now
 
     def can_vote(self):
-        """Method to check if the Question can vote."""
+        """Check if the Question can vote."""
         now = timezone.now()
         return self.pub_date <= now <= self.end_date
 
@@ -43,5 +43,5 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
 
     def __str__(self):
-        """Method to return the choice text."""
+        """Return the choice text."""
         return self.choice_text
