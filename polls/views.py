@@ -6,6 +6,7 @@ from django.views import generic
 from django.utils import timezone
 from .models import Choice, Question
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 class IndexView(generic.ListView):
     """Index view class."""
@@ -25,6 +26,7 @@ class IndexView(generic.ListView):
             pub_date__lte=timezone.now()
         ).order_by('-end_date')[:5]
 
+@login_required(login_url='/account/login')
 def detail_view(request, pk):
     """View for detail."""
     question = Question.objects.get(pk=pk)
@@ -38,6 +40,7 @@ class ResultsView(generic.DetailView):
 
     model = Question
     template_name = 'polls/results.html'
+
 
 def vote(request, question_id):
     """View for vote."""
@@ -54,3 +57,20 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+# def signup(request):
+#     """Register a new user."""
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             raw_passwd = form.cleaned_data.get('password')
+#             user = authenticate(username=username,password=raw_passwd)
+#             login(request, user)
+#             return redirect('polls')
+#         # what if form is not valid?
+#         # we should display a message in signup.html
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'registration/signup.html', {'form': form})
