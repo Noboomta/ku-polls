@@ -1,6 +1,7 @@
 """import."""
 from django.db import models
 import datetime
+import django.contrib.auth.models
 from django.utils import timezone
 
 class Question(models.Model):
@@ -45,3 +46,10 @@ class Choice(models.Model):
     def __str__(self):
         """Return the choice text."""
         return self.choice_text
+
+class Vote(models.Model):
+    """Class Vote for store the choice selected, user, and question."""
+
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    selected_choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+    user = models.ForeignKey(django.contrib.auth.models.User,null=True,blank=True,on_delete=models.CASCADE)

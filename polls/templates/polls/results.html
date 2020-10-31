@@ -1,15 +1,20 @@
-<h1 style="color: blue;">{{ question.question_text }}</h1>
+<h1>{{question.question_text}}</h1>
 
 <ul>
-<table>
-{% for choice in question.choice_set.all %}
-    <tr>
-        <td style="color: blue;">{{choice.choice_text}}</td>
-        <td style="color: red">{{choice.votes}}</td>
-    </tr>    
-{% endfor %}
-</table>
+    <table style="width:30%">
+        {% for choice in question.choice_set.all %}
+            <tr>
+                <td>choice: {{ choice.choice_text }}</td>
+                <td>have</td>
+                <td>{{ choice.votes }}</td>
+                <td>votes</td>
+            </tr>
+        {% endfor %}
+    </table>
 </ul>
 
 <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
-<a href="{% url 'polls:index' %}">Go Back</a>
+<a href="{% url 'polls:index'%}">{{"Back to List of Polls"}}</a>
+<br>
+{% if user.is_authenticated %} <a href="{% url 'logout' %}">Logout</a>{% endif %}
+

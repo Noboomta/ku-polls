@@ -1,40 +1,42 @@
-<style>
-    .city {
-      background-color: red;
-      color: red;
-      border: 2px solid red;
-      margin: 20px;
-      padding: 20px;
-    }
-    li a{
-        color: blue;
-    }
-</style>
-
 {% load static %}
+{% block content %}
 
-<link rel="stylesheet" type="text/css" href="polls\static\polls\style.css">
-<!-- {% static 'polls/style.css' %} -->
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 
 {% if messages %}
     {% for message in messages %}
-        <p class="{{message.warning}}" style="color:aqua;">{{message}}</p>
+        <div class="{{message.warning}}" style="color: red;">
+          <strong>{{message}}<strong>
+        </div>
     {% endfor %}
+{% endif %}
+
+{% if user.is_authenticated %}
+  <div>
+    Hello {{ user.username }}, 
+    <a>Click</a>
+    <a href="{% url 'logout' %}">Logout</a>
+    <a> to Logout</a>
+  </div>
+{% else %}
+  <a>Please Login to vote </a>
+  <a href="{% url 'login' %}" class="float-right">Login</a>
 {% endif %}
 
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
-        <li>
-            <p ><strong>{{ question.question_text }}</strong></>
-            {% if question.can_vote %}
-            <a href="{% url 'polls:detail' question.id %}">vote</a>
-            {% endif %}
-            <a href="{% url 'polls:results' question.id %}">result</a>
-        </li>
+        <p>Question: {{ question.question_text }}</p>
+        {% if question.can_vote %}
+            {% if user.is_authenticated %} <a href="{% url 'polls:detail' question.id %}">vote</a> {% endif %}
+        {% endif %}
+        <a href="{% url 'polls:results' question.id %}">result</a>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p class="mt-4 text-center">No polls are available.</p>
 {% endif %}
-<img src="/static/polls/images/background.gif"/>
+
+{% if user.is_authenticated %} <a href="{% url 'logout' %}">Logout</a>{% endif %}
+
+{% endblock %}
