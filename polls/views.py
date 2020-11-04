@@ -53,8 +53,6 @@ def update_choice_login(request, **kwargs):
         except(Vote.DoesNotExist):
             pass
         
-
-
 @receiver(user_logged_in)
 def log_user_logged_in(sender, request, user, **kwargs):
     """Log when user login."""
@@ -62,7 +60,6 @@ def log_user_logged_in(sender, request, user, **kwargs):
     ip = get_client_ip(request)
     date = datetime.now()
     log.info('Login user: %s , IP: %s , Date: %s', user, ip, str(date))
-
 
 @receiver(user_logged_out)
 def log_user_logged_out(sender, request, user, **kwargs):
@@ -72,7 +69,6 @@ def log_user_logged_out(sender, request, user, **kwargs):
     date = datetime.now()
     log.info('Logout user: %s , IP: %s , Date: %s', user, ip, str(date))
 
-
 @receiver(user_login_failed)
 def log_user_login_failed(sender, request, credentials, **kwargs):
     """Log when fail to login."""
@@ -80,6 +76,7 @@ def log_user_login_failed(sender, request, credentials, **kwargs):
     ip = get_client_ip(request)
     date = datetime.now()
     log.warning('Login user(failed): %s , IP: %s , Date: %s', credentials['username'], ip, str(date))
+
 class DetailView(LoginRequiredMixin,generic.DetailView):
     """View for detail page."""
 
